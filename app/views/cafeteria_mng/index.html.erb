@@ -1,0 +1,13 @@
+<h3>This is the cafeteria management app</h3>
+
+<%= DateTime.now.to_s(:short)%>
+<p>There are a total of <%=MenuItem.count%> menus in our database</p>
+<br>
+
+<% MenuItem.all.each do |menu|%>
+<div>
+  <p><%=menu.name%> - Rs.<%=menu.price%></p>
+  <p>[<%=menu.description%>]</p>
+  <br>
+</div>
+<%end%>
