@@ -4,9 +4,12 @@ Rails.application.routes.draw do
   #root :to => "/"
 
   get "/" => "home#index"
+
   resources :users
 
   resources :cafeteria_mng
 
+  get "/signin" => "sessions#new", as: :new_sessions
+  post "/signin" => "sessions#create", as: :sessions
   #get "cafeteria_mng", to: "cafeteria_mng#index"
 end
