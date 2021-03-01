@@ -1,13 +1,108 @@
-<h3>This is the cafeteria management app</h3>
+<!--<h3>This is the cafeteria management app</h3>
 
 <%= DateTime.now.to_s(:short)%>
 <p>There are a total of <%=MenuItem.count%> menus in our database</p>
-<br>
+<br>-->
 
-<% MenuItem.all.each do |menu|%>
-<div>
-  <p><%=menu.name%> - Rs.<%=menu.price%></p>
-  <p>[<%=menu.description%>]</p>
-  <br>
-</div>
-<%end%>
+
+<!--<div class="sidenav">
+  <a href="/about">About</a>
+  <a href="/menu">Menu</a>
+  <a href="/orders">Orders</a>
+  <a href="/contact">Contact</a>
+</div>-->
+
+<article>
+
+  <div class="tab">
+    <button class="tablinks" onclick="pageTabs(event, 'About')" id="defaultOpen">About</button>
+    <button class="tablinks" onclick="pageTabs(event, 'Menu')">Menu</button>
+    <button class="tablinks" onclick="pageTabs(event, 'Orders')" href="#orders">Orders</button>
+    <button class="tablinks" onclick="pageTabs(event, 'Contact')">Contact</button>
+  </div>
+
+
+  <div id="About" class="tabcontent">
+    <h3>ABOUT</h3>
+  </div>
+
+  <div id="Menu" class="tabcontent">
+    <h2>MENU</h2>
+      <%= render partial: "cafeteria_mng-section", locals: {
+        section_title: "Breakfast",
+        menus: MenuItem.findB
+      } %>
+
+      <%= render partial: "cafeteria_mng-section", locals: {
+        section_title: "Drinks",
+        menus: MenuItem.findD
+      } %>
+
+      <form action="#orders">
+        <input class="Add-button" type="submit" value="Add to cart" name="commit">
+      </form>
+  </div>
+
+  <div id="Orders" class="tabcontent">
+    <h3>ORDERS</h3>
+    <p></p>
+  </div>
+
+  <div id="Contact" class="tabcontent">
+    <h3>CONTACT</h3>
+    <p></p>
+  </div>
+
+  <script>
+    function pageTabs(evt, tabName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(tabName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+    document.getElementById("defaultOpen").click();
+  </script>
+
+</article>
+
+<!--<div id="Menu" class="tabcontent">
+  <h2>MENU</h2>
+    <div class="menu_cat">
+      <% MenuCategory.all.each do |menucat|%>
+        <div class="Menu-dropdown">
+          <label for="menu" ><%=menucat.name%><br></label>
+          <select id="menu" class="menu_items">
+                <%MenuItem.all.each do |menu|%>
+                  <div class="tab">
+                    <option>
+                      <button class="tablinks" onclick="pageTabs(event, '<%=menu.name%>')"><%=menu.name%></button>
+                    </option>
+                  </div>
+
+                  <div id="<%=menu.name%>" class="tabcontent">
+                    <h4><%=menu.name%><h4>
+                    <p><%=menu.description%> - Rs.<%=menu.price%><p>
+                  </div>
+                <%end%>
+              </div>
+          </select>
+        </div>
+        <br>
+      <%end%>
+    </div>
+</div>-->
+
+<!--<% MenuItem.all.each do |menu|%>
+  <div style="margin-left: 20px; padding:0px;">
+    <p><%=menu.name%> - Rs.<%=menu.price%></p>
+    <p>[<%=menu.description%>]</p>
+    <br>
+  </div>
+<%end%>-->

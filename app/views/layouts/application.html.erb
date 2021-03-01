@@ -8,13 +8,36 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <style>
+      .main {
+        margin-left: 200px; /* Same as the width of the sidenav */
+        font-size: 20px; /* Increased text to enable scrolling */
+        padding: 0px 10px;
+      }
+    </style>
   </head>
 
-  <body>
-  <h1 style="background-color:#458B00; color:white;">Fresh Eats</h1>
+  <body class="main">
+    <header style="margin-bottom: 20px;">
+      <h1 style = "text-align: center; color:#458B00;  font-family : Gill Sans, sans-serif; font-size:40px; font-weight: 300; display: inline; margin-bottom: 50px;" >
+        Fresh
+      </h1>
+      <h1 style = "text-align: center; color:black;  font-family : Didot, serif, fantasy; font-weight: 500; font-size:40px; display:inline;">
+        Eats
+      </h1>
+    </header>
+
+    <% if @current_user %>
+      <p class="UserHeader">
+        Welcome <%= @current_user.firstname%>!
+      </p>
+    <%end%>
+
     <%= yield %>
 
-  <p style="margin-bottom: 300px;">
-  <p style="font-size: 12px; color: gray;">FreshEats App (c) Freshworks</p>
+    <!--<footer>
+      <p style="font-size: 12px; color: gray;">FreshEats App (c) Freshworks</p>
+    </footer>-->
   </body>
 </html>
