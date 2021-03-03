@@ -15,9 +15,9 @@
 <article>
 
   <div class="tab">
-    <button class="tablinks" onclick="pageTabs(event, 'About')" id="defaultOpen">About</button>
-    <button class="tablinks" onclick="pageTabs(event, 'Menu')">Menu</button>
-    <button class="tablinks" onclick="pageTabs(event, 'Orders')" href="#orders">Orders</button>
+    <button class="tablinks" onclick="pageTabs(event, 'About')">About</button>
+    <button class="tablinks" onclick="pageTabs(event, 'Menu')" id="defaultOpen">Menu</button>
+    <button class="tablinks" onclick="pageTabs(event, 'Orders')" >Orders</button>
     <button class="tablinks" onclick="pageTabs(event, 'Contact')">Contact</button>
   </div>
 
@@ -28,24 +28,31 @@
 
   <div id="Menu" class="tabcontent">
     <h2>MENU</h2>
-      <%= render partial: "cafeteria_mng-section", locals: {
+      <%= render partial: "cafeteria_mng-section-menu", locals: {
         section_title: "Breakfast",
         menus: MenuItem.findB
       } %>
 
-      <%= render partial: "cafeteria_mng-section", locals: {
+      <%= render partial: "cafeteria_mng-section-menu", locals: {
         section_title: "Drinks",
         menus: MenuItem.findD
       } %>
 
-      <form action="#orders">
-        <input class="Add-button" type="submit" value="Add to cart" name="commit">
+      <form>
+        <input class="Add-button" type="submit" value="PLace order" name="commit">
       </form>
   </div>
 
   <div id="Orders" class="tabcontent">
     <h3>ORDERS</h3>
-    <p></p>
+      <%= render partial: "cafeteria_mng-section-order", locals: {
+        section_title: "Orders",
+        orders: Order.findOrder
+      } %>
+      <%= render partial: "cafeteria_mng-section-orderItem", locals: {
+        section_title: "Orders",
+        orderslist: OrderItem.findOrderList
+      } %>
   </div>
 
   <div id="Contact" class="tabcontent">
@@ -69,6 +76,9 @@
     }
     document.getElementById("defaultOpen").click();
   </script>
+
+
+
 
 </article>
 

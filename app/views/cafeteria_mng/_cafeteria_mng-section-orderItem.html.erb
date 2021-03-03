@@ -1,0 +1,9 @@
+
+<div>
+  <ul>
+    <% orderslist.each do |order| %>
+      <p>Ordered item : <%=order.menu_item_name%></p>
+      <p>Price : <%=order.menu_item_price%>
+    <%end%>
+  </ul>
+</div>
